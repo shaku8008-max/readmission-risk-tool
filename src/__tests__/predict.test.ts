@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { predictReadmission } from '@/lib/model/predict';
 import type { PredictionInput } from '@/lib/model/predict';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 
 describe('predictReadmission', () => {
   const { test_cases, features, intercept } = modelParams;

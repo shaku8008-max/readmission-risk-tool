@@ -3,7 +3,7 @@ import { getRiskBand } from '@/lib/config';
 import { METFORMIN_LABELS, DISCHARGE_LABELS } from '@/lib/model/encodings';
 import { computeBMI } from '@/lib/clinical/bmi';
 import { classifyBloodPressure } from '@/lib/clinical/bloodPressure';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 
 interface PdfData {
   inputs: Record<string, number>;

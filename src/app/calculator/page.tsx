@@ -1,7 +1,7 @@
 'use client';
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 import { predictReadmission } from '@/lib/model/predict';
 import type { PredictionInput } from '@/lib/model/predict';
 import { dischargeToOneHot } from '@/lib/model/encodings';

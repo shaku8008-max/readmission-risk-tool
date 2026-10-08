@@ -6,7 +6,7 @@ import { computeBMI } from '@/lib/clinical/bmi';
 import { classifyBloodPressure } from '@/lib/clinical/bloodPressure';
 import { getRiskBand, getRiskBandColor, FACTOR_THRESHOLDS } from '@/lib/config';
 import { METFORMIN_LABELS, DISCHARGE_LABELS } from '@/lib/model/encodings';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 import { generatePdf } from '@/lib/pdf/generatePdf';
 
 const { display_stats, decision_threshold } = modelParams;

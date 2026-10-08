@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 
 export default function Home() {
   return (

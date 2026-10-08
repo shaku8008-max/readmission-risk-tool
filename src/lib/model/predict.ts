@@ -1,4 +1,4 @@
-import modelParams from './model_params.json';
+import modelParams from './model_params.v1.json';
 
 export type FeatureName = (typeof modelParams.features)[number];
 

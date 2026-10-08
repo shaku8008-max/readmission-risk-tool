@@ -1,5 +1,5 @@
 'use client';
-import modelParams from '@/lib/model/model_params.json';
+import modelParams from '@/lib/model/model_params.v1.json';
 import { METFORMIN_OPTIONS, DISCHARGE_OPTIONS } from '@/lib/model/encodings';
 import type { FormData } from './page';
 import { getTypicalText, getYesNoText } from './page';
