@@ -40,7 +40,8 @@ export function calculateScore(
 
   // Normalize arrays/objects to per-feature lookups
   const getVal = (arr: readonly number[] | Record<string, number>, feature: string, i: number): number => {
-    return Array.isArray(arr) ? arr[i] : arr[feature];
+    if (Array.isArray(arr)) return arr[i];
+    return (arr as Record<string, number>)[feature];
   };
 
   // Validate all features are present and finite
