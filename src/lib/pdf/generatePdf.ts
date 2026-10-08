@@ -45,7 +45,7 @@ export function generatePdf(data: PdfData): void {
   const flag = data.score >= modelParams.decision_threshold;
   // Title
   doc.setFontSize(18); doc.setFont('helvetica', 'bold');
-  doc.text('Readmission Risk Assessment', m, y); y += 10;
+  doc.text('Readmission Risk Assessment — Version 1', m, y); y += 10;
   doc.setFontSize(10); doc.setFont('helvetica', 'normal');
   doc.text(`${ds} at ${ts}`, m, y); y += 10;
 

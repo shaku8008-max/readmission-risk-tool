@@ -3,25 +3,31 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { VERSION_CONFIG } from '@/lib/versions';
 
-export default function Navbar() {
+interface NavbarProps {
+  /** Prefix for navigation links, e.g. "/v1". Empty string for root. */
+  versionPrefix?: string;
+}
+
+export default function Navbar({ versionPrefix = '' }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const links = [
-    { href: '/', label: 'Home' },
-    { href: '/calculator', label: 'Calculator' },
+    { href: `${versionPrefix}`, label: 'Home' },
+    { href: `${versionPrefix}/calculator`, label: 'Calculator' },
   ];
 
   return (
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-50" role="navigation" aria-label="Main navigation">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-semibold text-blue-700 hover:text-blue-800">
+          <Link href={`${versionPrefix}`} className="text-xl font-semibold text-blue-700 hover:text-blue-800">
             Readmission Risk Tool
           </Link>
 
-          {/* Desktop links */}
+          {/* Desktop links + version dropdown */}
           <div className="hidden sm:flex sm:items-center sm:space-x-6">
             {links.map((link) => (
               <Link
@@ -36,6 +42,16 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <select
+              value={versionPrefix}
+              onChange={(e) => { window.location.href = e.target.value || '/'; }}
+              className="text-sm text-slate-600 border border-slate-300 rounded-md px-2 py-1 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              aria-label="Select model version"
+            >
+              {VERSION_CONFIG.map((v) => (
+                <option key={v.id} value={v.prefix}>{v.label}</option>
+              ))}
+            </select>
           </div>
 
           {/* Mobile hamburger */}
@@ -72,6 +88,16 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <select
+              value={versionPrefix}
+              onChange={(e) => { window.location.href = e.target.value || '/'; }}
+              className="mt-2 w-full text-sm text-slate-600 border border-slate-300 rounded-md px-2 py-1 bg-white"
+              aria-label="Select model version"
+            >
+              {VERSION_CONFIG.map((v) => (
+                <option key={v.id} value={v.prefix}>{v.label}</option>
+              ))}
+            </select>
           </div>
         )}
       </div>
