@@ -1,6 +1,6 @@
-import modelParams from './model_params.v1.json';
+import v1Params from './model_params.v1.json';
 
-export type FeatureName = (typeof modelParams.features)[number];
+export type FeatureName = (typeof v1Params.features)[number];
 
 export type PredictionInput = Record<FeatureName, number>;
 
@@ -15,16 +15,36 @@ export interface PredictionResult {
   contributions: Contribution[];
 }
 
-export function predictReadmission(inputs: PredictionInput): PredictionResult {
-  const { features, intercept, coefficients, scaler_mean, scaler_scale } = modelParams;
+/** Shape of a model params file — shared across all model versions. */
+export interface ModelParams {
+  features: readonly string[];
+  intercept: number;
+  coefficients: readonly number[];
+  scaler_mean: readonly number[];
+  scaler_scale: readonly number[];
+}
 
-  // Validate all 16 features are present and finite
+/**
+ * Core scoring function. Takes any model params object and computes
+ * the risk score. This is the single shared implementation of the maths:
+ *   z = intercept + sum(coef * (x - mean) / scale)
+ *   score = 1 / (1 + exp(-z))
+ *
+ * Each model version passes its own params file.
+ */
+export function calculateScore(
+  params: ModelParams,
+  inputs: Record<string, number>,
+): PredictionResult {
+  const { features, intercept, coefficients, scaler_mean, scaler_scale } = params;
+
+  // Validate all features are present and finite
   for (const feature of features) {
     if (!(feature in inputs)) {
       throw new Error(`Missing required feature: ${feature}`);
     }
-    if (!Number.isFinite(inputs[feature as FeatureName])) {
-      throw new Error(`Feature ${feature} must be a finite number, got: ${inputs[feature as FeatureName]}`);
+    if (!Number.isFinite(inputs[feature])) {
+      throw new Error(`Feature ${feature} must be a finite number, got: ${inputs[feature]}`);
     }
   }
 
@@ -45,4 +65,9 @@ export function predictReadmission(inputs: PredictionInput): PredictionResult {
   const score = 1 / (1 + Math.exp(-z));
 
   return { score, z, contributions };
+}
+
+/** Version 1 scoring — passes v1 params to the shared calculator. */
+export function predictReadmission(inputs: PredictionInput): PredictionResult {
+  return calculateScore(v1Params as ModelParams, inputs);
 }
