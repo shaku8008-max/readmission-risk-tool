@@ -1,0 +1,319 @@
+{
+  "model_type": "logistic_regression",
+  "trained_on": "2026-10-08",
+  "target": "readmitted within 30 days",
+  "training_rows": 79309,
+  "hyperparameters": {
+    "C": 0.001,
+    "class_weight": "balanced"
+  },
+  "test_roc_auc": 0.653252930896062,
+  "test_pr_auc": 0.2091158686304285,
+  "decision_threshold": 0.4455,
+  "risk_tiers": {
+    "high": {
+      "min_score": 0.6329,
+      "share_of_patients": 0.107,
+      "readmission_rate": 0.255,
+      "share_of_all_readmissions": 0.235
+    },
+    "moderate": {
+      "min_score": 0.4455,
+      "share_of_patients": 0.401,
+      "readmission_rate": 0.134,
+      "share_of_all_readmissions": 0.463
+    },
+    "low": {
+      "min_score": 0.0,
+      "share_of_patients": 0.492,
+      "readmission_rate": 0.071,
+      "share_of_all_readmissions": 0.301
+    }
+  },
+  "features": [
+    "num_lab_procedures",
+    "num_procedures",
+    "num_medications",
+    "number_emergency",
+    "number_inpatient",
+    "number_diagnoses",
+    "metformin",
+    "diabetesMed",
+    "discharge_disposition_id_2",
+    "discharge_disposition_id_3",
+    "discharge_disposition_id_5",
+    "discharge_disposition_id_6",
+    "discharge_disposition_id_18",
+    "discharge_disposition_id_22",
+    "diag_1_Respiratory"
+  ],
+  "intercept": -0.10483403152974131,
+  "coefficients": {
+    "num_lab_procedures": 0.03922694864766174,
+    "num_procedures": -0.03474930807247377,
+    "num_medications": 0.04526757338944009,
+    "number_emergency": 0.07118112262031234,
+    "number_inpatient": 0.3550373429685606,
+    "number_diagnoses": 0.10208677810929598,
+    "metformin": -0.06399200596054333,
+    "diabetesMed": 0.08604202454956247,
+    "discharge_disposition_id_2": 0.07421577521203286,
+    "discharge_disposition_id_3": 0.14373798650679032,
+    "discharge_disposition_id_5": 0.1067644293748862,
+    "discharge_disposition_id_6": 0.06454447226070449,
+    "discharge_disposition_id_18": 0.06749784661907766,
+    "discharge_disposition_id_22": 0.18250938911821757,
+    "diag_1_Respiratory": -0.05706495911516722
+  },
+  "scaler_mean": {
+    "num_lab_procedures": 42.90075527367638,
+    "num_procedures": 1.3309838732048065,
+    "num_medications": 15.965148974265215,
+    "number_emergency": 0.19600549748452256,
+    "number_inpatient": 0.6231953498341929,
+    "number_diagnoses": 7.3975210884010645,
+    "metformin": 0.4054268746296133,
+    "diabetesMed": 0.7729009317984088,
+    "discharge_disposition_id_2": 0.021397319345849777,
+    "discharge_disposition_id_3": 0.14009759295918495,
+    "discharge_disposition_id_5": 0.012117161986659774,
+    "discharge_disposition_id_6": 0.1294178466504432,
+    "discharge_disposition_id_18": 0.037259327440769645,
+    "discharge_disposition_id_22": 0.01984642348283297,
+    "diag_1_Respiratory": 0.14062716715631265
+  },
+  "scaler_scale": {
+    "num_lab_procedures": 19.633822652567645,
+    "num_procedures": 1.7030110975343662,
+    "num_medications": 8.070455421634573,
+    "number_emergency": 0.93833967162141,
+    "number_inpatient": 1.2493606017503027,
+    "number_diagnoses": 1.9449884053470647,
+    "metformin": 0.8204806328085218,
+    "diabetesMed": 0.41895713554438985,
+    "discharge_disposition_id_2": 0.14470478247335677,
+    "discharge_disposition_id_3": 0.34708825593244647,
+    "discharge_disposition_id_5": 0.1094090324061447,
+    "discharge_disposition_id_6": 0.3356618352133671,
+    "discharge_disposition_id_18": 0.18939659437125886,
+    "discharge_disposition_id_22": 0.13947237345715827,
+    "diag_1_Respiratory": 0.34763654441658337
+  },
+  "feature_ranges": {
+    "num_lab_procedures": {
+      "min": 1.0,
+      "max": 126.0
+    },
+    "num_procedures": {
+      "min": 0.0,
+      "max": 6.0
+    },
+    "num_medications": {
+      "min": 1.0,
+      "max": 81.0
+    },
+    "number_emergency": {
+      "min": 0.0,
+      "max": 76.0
+    },
+    "number_inpatient": {
+      "min": 0.0,
+      "max": 21.0
+    },
+    "number_diagnoses": {
+      "min": 1.0,
+      "max": 16.0
+    },
+    "metformin": {
+      "min": 0.0,
+      "max": 3.0
+    },
+    "diabetesMed": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_2": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_3": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_5": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_6": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_18": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "discharge_disposition_id_22": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "diag_1_Respiratory": {
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "test_cases": [
+    {
+      "inputs": {
+        "num_lab_procedures": 29.0,
+        "num_procedures": 0.0,
+        "num_medications": 5.0,
+        "number_emergency": 1.0,
+        "number_inpatient": 0.0,
+        "number_diagnoses": 4.0,
+        "metformin": 0.0,
+        "diabetesMed": 0.0,
+        "discharge_disposition_id_2": 0.0,
+        "discharge_disposition_id_3": 0.0,
+        "discharge_disposition_id_5": 0.0,
+        "discharge_disposition_id_6": 0.0,
+        "discharge_disposition_id_18": 0.0,
+        "discharge_disposition_id_22": 0.0,
+        "diag_1_Respiratory": 0.0
+      },
+      "expected_probability": 0.3295184140017822
+    },
+    {
+      "inputs": {
+        "num_lab_procedures": 46.0,
+        "num_procedures": 3.0,
+        "num_medications": 24.0,
+        "number_emergency": 0.0,
+        "number_inpatient": 0.0,
+        "number_diagnoses": 6.0,
+        "metformin": 0.0,
+        "diabetesMed": 0.0,
+        "discharge_disposition_id_2": 0.0,
+        "discharge_disposition_id_3": 0.0,
+        "discharge_disposition_id_5": 0.0,
+        "discharge_disposition_id_6": 1.0,
+        "discharge_disposition_id_18": 0.0,
+        "discharge_disposition_id_22": 0.0,
+        "diag_1_Respiratory": 0.0
+      },
+      "expected_probability": 0.39899953735088917
+    },
+    {
+      "inputs": {
+        "num_lab_procedures": 51.0,
+        "num_procedures": 1.0,
+        "num_medications": 13.0,
+        "number_emergency": 1.0,
+        "number_inpatient": 0.0,
+        "number_diagnoses": 7.0,
+        "metformin": 0.0,
+        "diabetesMed": 1.0,
+        "discharge_disposition_id_2": 0.0,
+        "discharge_disposition_id_3": 0.0,
+        "discharge_disposition_id_5": 0.0,
+        "discharge_disposition_id_6": 1.0,
+        "discharge_disposition_id_18": 0.0,
+        "discharge_disposition_id_22": 0.0,
+        "diag_1_Respiratory": 0.0
+      },
+      "expected_probability": 0.4783089967019342
+    },
+    {
+      "inputs": {
+        "num_lab_procedures": 52.0,
+        "num_procedures": 0.0,
+        "num_medications": 22.0,
+        "number_emergency": 0.0,
+        "number_inpatient": 2.0,
+        "number_diagnoses": 9.0,
+        "metformin": 0.0,
+        "diabetesMed": 1.0,
+        "discharge_disposition_id_2": 0.0,
+        "discharge_disposition_id_3": 0.0,
+        "discharge_disposition_id_5": 0.0,
+        "discharge_disposition_id_6": 1.0,
+        "discharge_disposition_id_18": 0.0,
+        "discharge_disposition_id_22": 0.0,
+        "diag_1_Respiratory": 0.0
+      },
+      "expected_probability": 0.6418796089591396
+    },
+    {
+      "inputs": {
+        "num_lab_procedures": 66.0,
+        "num_procedures": 0.0,
+        "num_medications": 17.0,
+        "number_emergency": 2.0,
+        "number_inpatient": 7.0,
+        "number_diagnoses": 9.0,
+        "metformin": 0.0,
+        "diabetesMed": 0.0,
+        "discharge_disposition_id_2": 0.0,
+        "discharge_disposition_id_3": 0.0,
+        "discharge_disposition_id_5": 0.0,
+        "discharge_disposition_id_6": 0.0,
+        "discharge_disposition_id_18": 0.0,
+        "discharge_disposition_id_22": 0.0,
+        "diag_1_Respiratory": 0.0
+      },
+      "expected_probability": 0.8530077237764427
+    }
+  ],
+  "display_stats": {
+    "num_lab_procedures": {
+      "median": 44.0,
+      "p25": 31.0,
+      "p75": 57.0,
+      "mean": 42.90075527367638
+    },
+    "num_procedures": {
+      "median": 1.0,
+      "p25": 0.0,
+      "p75": 2.0,
+      "mean": 1.3309838732048065
+    },
+    "num_medications": {
+      "median": 15.0,
+      "p25": 10.0,
+      "p75": 20.0,
+      "mean": 15.965148974265215
+    },
+    "number_emergency": {
+      "median": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "mean": 0.19600549748452256
+    },
+    "number_inpatient": {
+      "median": 0.0,
+      "p25": 0.0,
+      "p75": 1.0,
+      "mean": 0.6231953498341929
+    },
+    "number_diagnoses": {
+      "median": 8.0,
+      "p25": 6.0,
+      "p75": 9.0,
+      "mean": 7.3975210884010645
+    },
+    "diabetesMed": {
+      "share_yes": 0.7729009317984088
+    },
+    "diag_1_Respiratory": {
+      "share_yes": 0.14062716715631265
+    },
+    "discharge_destination": {
+      "discharge_disposition_id_2": 0.021397319345849777,
+      "discharge_disposition_id_3": 0.14009759295918495,
+      "discharge_disposition_id_5": 0.012117161986659774,
+      "discharge_disposition_id_6": 0.1294178466504432,
+      "discharge_disposition_id_18": 0.037259327440769645,
+      "discharge_disposition_id_22": 0.01984642348283297,
+      "home_or_other": 0.6398643281342598
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import v1Params from './model_params.v1.json';
 
-export type FeatureName = (typeof v1Params.features)[number];
+export type FeatureName = string;
 
-export type PredictionInput = Record<FeatureName, number>;
+export type PredictionInput = Record<string, number>;
 
 export interface Contribution {
-  feature: FeatureName;
+  feature: string;
   contribution: number;
 }
 
@@ -19,9 +19,9 @@ export interface PredictionResult {
 export interface ModelParams {
   features: readonly string[];
   intercept: number;
-  coefficients: readonly number[];
-  scaler_mean: readonly number[];
-  scaler_scale: readonly number[];
+  coefficients: readonly number[] | Record<string, number>;
+  scaler_mean: readonly number[] | Record<string, number>;
+  scaler_scale: readonly number[] | Record<string, number>;
 }
 
 /**
@@ -36,7 +36,12 @@ export function calculateScore(
   params: ModelParams,
   inputs: Record<string, number>,
 ): PredictionResult {
-  const { features, intercept, coefficients, scaler_mean, scaler_scale } = params;
+  const { features, intercept } = params;
+
+  // Normalize arrays/objects to per-feature lookups
+  const getVal = (arr: readonly number[] | Record<string, number>, feature: string, i: number): number => {
+    return Array.isArray(arr) ? arr[i] : arr[feature];
+  };
 
   // Validate all features are present and finite
   for (const feature of features) {
@@ -52,11 +57,11 @@ export function calculateScore(
   let z = intercept;
 
   for (let i = 0; i < features.length; i++) {
-    const feature = features[i] as FeatureName;
+    const feature = features[i];
     const x = inputs[feature];
-    const mean = scaler_mean[i];
-    const scale = scaler_scale[i];
-    const coef = coefficients[i];
+    const mean = getVal(params.scaler_mean, feature, i);
+    const scale = getVal(params.scaler_scale, feature, i);
+    const coef = getVal(params.coefficients, feature, i);
     const contribution = coef * (x - mean) / scale;
     contributions.push({ feature, contribution });
     z += contribution;
@@ -69,5 +74,11 @@ export function calculateScore(
 
 /** Version 1 scoring — passes v1 params to the shared calculator. */
 export function predictReadmission(inputs: PredictionInput): PredictionResult {
-  return calculateScore(v1Params as ModelParams, inputs);
+  return calculateScore(v1Params as unknown as ModelParams, inputs);
+}
+import v2Params from "./model_params.v2.json";
+
+/** Version 2 scoring — passes v2 params to the shared calculator. */
+export function predictReadmissionV2(inputs: PredictionInput): PredictionResult {
+  return calculateScore(v2Params as unknown as ModelParams, inputs);
 }
